@@ -2,6 +2,7 @@
 
 from discord.ext import commands
 import discord
+import itertools
 
 
 class Banner(commands.Cog, name="Main"):
@@ -17,7 +18,7 @@ class Banner(commands.Cog, name="Main"):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        for url in urls:
+        for url in self.urls:
             if url in message.content and message.guild is not None:
                 await message.guild.ban(message.author, reason="nude sending selfbot")
                 return
@@ -34,6 +35,7 @@ class Banner(commands.Cog, name="Main"):
         self.banned = banned
         with open("list.txt", "w", encoding="utf-8") as fp:
             fp.write("\n".join(banned))
+        self.urls = list(itertools.chain(*[(f"https://{host}", f"http://{host}") for host in banned]))
 
     @commands.is_owner()
     @commands.command()
@@ -47,6 +49,7 @@ class Banner(commands.Cog, name="Main"):
         self.banned = banned
         with open("list.txt", "w", encoding="utf-8") as fp:
             fp.write("\n".join(banned))
+        self.urls = list(itertools.chain(*[(f"https://{host}", f"http://{host}") for host in banned]))
 
 
 def setup(bot):
