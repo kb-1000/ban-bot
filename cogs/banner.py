@@ -21,7 +21,7 @@ class Banner(commands.Cog, name="Main"):
     async def on_message(self, message):
         for url in self.urls:
             if url in message.content and message.guild is not None:
-                await asyncio.sleep(0.1)
+                await asyncio.sleep(10)
                 await message.guild.ban(message.author, reason="nude sending selfbot")
                 return
 
