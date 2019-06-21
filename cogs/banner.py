@@ -22,7 +22,7 @@ class Banner(commands.Cog, name="Main"):
         for url in self.urls:
             if url in message.content and message.guild is not None:
                 await asyncio.sleep(10)
-                await message.guild.ban(message.author, reason="nude sending selfbot")
+                await message.guild.ban(message.author, reason="nude sending spam userbot")
                 return
 
     # XXX(kb1000): Add fs lock
