@@ -24,6 +24,6 @@ bot = Bot()
 
 @bot.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game("Hosted by Library of Code"))
+    await bot.change_presence(activity=discord.Game("Hosted by Library of Code"))
 
 bot.run(config.token)
